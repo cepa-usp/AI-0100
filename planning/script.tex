@@ -34,7 +34,7 @@
 
     % Título e autor
     \title{Roteiro de produção da AI-0100}
-    \subtitle{taxas de variação média e instantânea}
+    \subtitle{taxas de variação e derivadas}
     \author{Dr. Ivan Ramos Pagnossin}
     \date{\today}
 
@@ -47,9 +47,9 @@
     %--------------------
     \section{Orientações}
 
-    \condicional{AI rodando num LMS}{$\langle\text{Nome do aluno}\rangle$,} nesta atividade interativa nós exploraremos os conceitos de taxa de variação média e instantânea de uma função de uma variável ($f: \mathbb{R} \to \mathbb{R}$), escolhida arbitrariamente pelo \foreign{software}. A atividade consiste numa sequência de explicações, questões e instruções, que devem ser executadas na figura interativa acima.
+    \condicional{AI rodando num LMS}{$\langle\text{Nome do aluno}\rangle$,} nesta atividade interativa nós exploraremos os conceitos de taxa de variação média e instantânea (derivadas) de uma função de uma variável ($f: \mathbb{R} \to \mathbb{R}$). A atividade consiste numa sequência de explicações, questões e instruções, que devem ser executadas na figura interativa ao lado.
 
-    Você pode seguir esses passos quantas vezes quiser sem valer nota, bem como recomeçá-los a qualquer momento. Quando você achar que já está pronto para ser avaliado, pressione o botão ``valendo nota''. A partir deste momento cada nova tentativa será avaliada, de zero a cem pontos, e deverá ser executada até o fim (o botão ``recomeçar'' não terá efeito). Sua nota será simplesmente a média de todas as suas tentativas. \proceed
+    Você pode seguir esses passos quantas vezes quiser sem valer nota, bem como recomeçá-los a qualquer momento. Quando você achar que já está pronto para ser avaliado, pressione o botão ``valendo nota''. A partir deste momento cada nova tentativa será avaliada, de zero a cem pontos, e deverá ser executada até o fim (o botão ``recomeçar'' não terá efeito). Sua nota será a média aritmética de todas as suas tentativas. \proceed
 
     \paragraph{obs.:} para responder às questões, talvez você precise modificar a visualização da janela acima. Par isso, utilize os botões no canto superior esquerdo dela: o botão mais à esquerda (seta) lhe permite arrastar os pontos $A$ e $B$, enquanto o outro botão lhe permite mover o centro da janela e ampliar/reduzir o gráfico. Caso você não esteja vendo os pontos $A$ e $B$, utilize esses botões agora para ajustar a visualização. \proceed
 
@@ -64,28 +64,30 @@
 
     A \emph{taxa de variação média} de uma função $f$ é uma medida de quão rapidamente $f(x)$ varia quando variamos $x$. Dito de outra, se calcularmos $f$ em $x_A$ e depois em $x_B$ (veja a figura), qual será a variação em $f$ associada a esta variação em $x$? Uma forma bastante comum de expressar isso é simplesmente dividir uma variação pela outra:
     \begin{equation*}
-	\text{Taxa de variação média de $f$} = \frac{f(x_B) - f(x_A)}{x_B - x_A} = \frac{\Delta f}{\Delta x},
+	\text{Taxa de variação média de $f$} \doteq \frac{f(x_B) - f(x_A)}{x_B - x_A} = \frac{\Delta f}{\Delta x},
     \end{equation*}
-    onde o $\Delta$ é usado para representar uma variação. Ou seja, $\Delta x$ é uma variação em $x$, enquanto $\Delta f$ é uma variação em $f$. $\Delta x$ é arbitrário (de $x_A$ até $x_B$, no caso), pois $x$ é a variável independente, mas $\Delta f$ depende da variação em $x$. \proceed
+    onde o $\Delta$ é usado para representar uma variação. Ou seja, $\Delta x$ é uma variação em $x$, enquanto $\Delta f$ é uma variação em $f$. $\Delta x$ é arbitrário (de $x_A$ até $x_B$, no caso), pois $x$ é a variável independente, mas $\Delta f$ depende da variação em $x$ (na verdade, depende de $x_A$ e $x_B$). \proceed
 
-    A figura acima apresenta o gráfico de $f$, bem como os pontos $A$ e $B$ mencionados no parágrafo anterior. Calcule a taxa de variação média da função neste caso (isto é, calcule a razão $\Delta f/\Delta x$) e escreva seu resultado abaixo. Pressione ``avançar'' para prosseguir.
+    \paragraph{obs.:} o símbolo $\doteq$ denota que a taxa de variação média é \emph{definida} daquela forma (poderia haver uma outra forma de definir a taxa de variação média).
+
+    A figura acima apresenta o gráfico de $f$, uma função escolhida aleatoriamente pelo \foreign{software}, bem como os pontos $A$ e $B$ mencionados no parágrafo anterior. Calcule a taxa de variação média da função neste caso (isto é, calcule a razão $\Delta f/\Delta x$) e escreva seu resultado abaixo. Pressione ``avançar'' para prosseguir (você pode errar a resposta em até 1\%).
 
     \answerfield
 
     \begin{ct}
-	a avaliação deve ser feita usando as coordenadas de $A$ e $B$, questionando o \foreign{applet} através da interface Javascript que ele expõe. A resposta esperada é $(y_B - y_A)/(x_B - x_A)$ e deve haver uma tolerância de 10\% na avaliação da resposta do aluno.
+	a avaliação deve ser feita usando as coordenadas de $A$ e $B$, questionando o \foreign{applet} através da interface Javascript que ele expõe. A resposta esperada é $(y_B - y_A)/(x_B - x_A)$ e deve haver uma tolerância de 1\% na avaliação da resposta do aluno.
 
 	Exibir os elementos $C$, $\bar{AC}$, $\bar{BC}$ e $\theta$, no \foreign{applet}.
     \end{ct}
 
-    Observe o triângulo $ABC$ na figura. A relação $\Delta f/\Delta x$ é simplesmente a tangente do ângulo $\theta$, ou ainda o coeficiente angular da reta azul.
+    Observe o triângulo $ABC$ na figura. A relação $\Delta f/\Delta x$ é simplesmente a tangente do ângulo $\theta$, ou ainda o coeficiente angular da reta azul, ou ainda a inclinação dessa reta.
 
     %-------------------------------------
     \section{Taxa de variação instantânea}
 
     Ainda mais importante é a \emph{taxa de variação instantânea} ou \emph{derivada}, que é simplesmente a taxa de variação média de $f$ quando escolhemos $\Delta x$ muito pequeno. Podemos representar esta ideia usando limites, assim:
     \begin{equation*}
-	\text{Taxa de variação instantânea} = \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} \doteq \frac{df}{dx}.
+	\text{Taxa de variação instantânea} \doteq \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \frac{df}{dx}.
     \end{equation*}
     
     Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $f$, que você ainda não tem. Mas é possível estimá-la a partir da figura acima: arraste o ponto $B$ para \textbf{muito} perto de $A$ (use a ferramenta \foreign{zoom}). Este processo simboliza fazer $\Delta x \to 0$. \proceed
@@ -110,7 +112,7 @@
 
     Agora que você estimou a taxa de variação instantânea, posso dizer que função é esta que você está vendo na figura: $f(x) = \parametro{função aleatória}$. \proceed
 
-    Determine --- analiticamente --- a derivada de $f$ para $x$ qualquer e, em seguida, calcule o valor da derivada em $x = x_A$. Escreva o resultado abaixo. Atenção: a tolerância para erros no valor é agora muito menor ($< 1\%$) que no exercício anterior, onde você estava apenas estimando a derivada. Por isso, calcule a derivada analiticamente, isto é, à mão (\textbf{não} faça como você fez no exercício anterior).
+    Determine --- analiticamente --- a derivada de $f$ para $x$ qualquer e, em seguida, calcule o valor da derivada em $x = x_A$. Escreva o resultado abaixo. Atenção: a tolerância para erros no valor é agora muito menor ($< 1\%$) que na questão anterior, onde você estava apenas estimando a derivada. Por isso, calcule a derivada analiticamente, isto é, à mão (\textbf{não} faça como você fez no exercício anterior).
 
     \answerfield
 
@@ -122,19 +124,19 @@
 	y(x) - y(x_A) = m (x - x_A),
     \end{equation*}
     onde $m$ é o coeficiente angular da reta. Como estamos interessados na reta tangente a $f$ em $x_A$, $m$ é simplesmente a derivada de $f$ ali, ou o coeficiente angular de $f$ em $x_A$, ou...
-
-    \paragraph{obs.:} a expressão acima pode ser escrita numa forma equivalente que talvez lhe seja mais familiar: $y - y_0 = m(x - x_0)$. Compare-as.
-\proceed
-
+   
     Preencha abaixo os campos com as informações necessárias para representar a reta cinza:
-
     \begin{equation*}
         y(x) = \shortanswerfield + \shortanswerfield \left(x - \shortanswerfield\,\right)
     \end{equation*}
 
+    \paragraph{obs.:} a expressão acima pode ser escrita numa forma equivalente que talvez lhe seja mais familiar: $y - y_0 = m(x - x_0)$. Compare-as. \proceed
+
     \begin{ct}
 	as respostas esperadas são: $y_A$, $f'(x_A)$ e $x_A$, respectivamente. Elas têm pesos iguais e tolerância de 1\%.
     \end{ct}
+
+    \paragraph{Desafio:} qual é a expressão da reta \emph{perpendicular} à curva $f$ em $x_A$? \emph{Dica:} se $m_1$ é o coeficiente angular da reta tangente e $m_2$, o da reta perpendicular, então $m_1 m_2 = -1$ (da geometria analítica), desde que nenhum dos dois seja zero.
 
 \end{document}
 
