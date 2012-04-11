@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="conteudo">
+		<div id="t1" class="texto">
+			<p>\section{Orientações}<br><br>Nesta atividade interativa nós exploraremos os conceitos de taxa de variação média e instantânea (derivadas) de uma função de uma variável ($f: \mathbb{R} \to \mathbb{R}$). A atividade consiste numa sequência de explicações, questões e instruções, que devem ser executadas na figura interativa ao lado.<br>
+
+			Você pode seguir esses passos quantas vezes quiser sem valer nota, bem como recomeçá-los a qualquer momento. Quando você achar que já está pronto para ser avaliado, pressione o botão ''valendo nota''. A partir deste momento cada nova tentativa será avaliada, de zero a cem pontos, e deverá ser executada até o fim (o botão ``recomeçar'' não terá efeito). Sua nota será a média aritmética de todas as suas tentativas.</p>	
+		</div>
+		<div id="t2" class="texto">
+			<p>\paragraph{obs.:} para responder às questões, talvez você precise modificar a visualização da janela acima. Par isso, utilize os botões no canto superior esquerdo dela: o botão mais à esquerda (seta) lhe permite arrastar os pontos $A$ e $B$, enquanto o outro botão lhe permite mover o centro da janela e ampliar/reduzir o gráfico. Caso você não esteja vendo os pontos $A$ e $B$, utilize esses botões agora para ajustar a visualização.</p>		
+		</div>
+		<div id="t3" class="texto">
+			<p>\begin{ct}
+			quando o usuário acessar a atividade interativa pela primeira vez, uma configuração de exercício deve ser sorteada para aquela tentativa. Esta configuração permanece em uso até que o 	usuário pressione o botão ''recomeçar''.<br>
+
+			Uma ''configuração de exercício'' é composta por uma função $f$, sua derivada $f'$, um $x_A$ e um $x_B$ inicial.
+			\end{ct}</p>
+			
+		</div>
+		<div id="t4" class="texto">
+			<p>\section{Taxa de variação média}<br><br>
+			A \emph{taxa de variação média} de uma função $f$ é uma medida de quão rapidamente $f(x)$ varia quando variamos $x$. Dito de outra, se calcularmos $f$ em $x_A$ e depois em $x_B$ (veja a figura), qual será a variação em $f$ associada a esta variação em $x$? Uma forma bastante comum de expressar isso é simplesmente dividir uma variação pela outra:<br><br>
+			\begin{equation*}
+			\text{Taxa de variação média de $f$} \doteq \frac{f(x_B) - f(x_A)}{x_B - x_A} = \frac{\Delta f}{\Delta x},
+			\end{equation*}<br><br>
+			onde o $\Delta$ é usado para representar uma variação. Ou seja, $\Delta x$ é uma variação em $x$, enquanto $\Delta f$ é uma variação em $f$. $\Delta x$ é arbitrário (de $x_A$ até $x_B$, no caso), pois $x$ é a variável independente, mas $\Delta f$ depende da variação em $x$ (na verdade, depende de $x_A$ e $x_B$).</p>
+		</div>
+		<div id="i1" class="texto">
+			<p>\paragraph{obs.:} o símbolo $\doteq$ denota que a taxa de variação média é \emph{definida} daquela forma (poderia haver uma outra forma de definir a taxa de variação média).
+			A figura acima apresenta o gráfico de $f$, uma função escolhida aleatoriamente pelo \foreign{software}, bem como os pontos $A$ e $B$ mencionados no parágrafo anterior. Calcule a taxa de variação média da função neste caso (isto é, calcule a razão $\Delta f/\Delta x$) e escreva seu resultado abaixo. Pressione ``avançar'' para prosseguir (você pode errar a resposta em até 1\%).<br>
+
+			\answerfield
+
+			\begin{ct}
+			a avaliação deve ser feita usando as coordenadas de $A$ e $B$, questionando o \foreign{applet} através da interface Javascript que ele expõe. A resposta esperada é $(y_B - y_A)/(x_B - x_A)$ e deve haver uma tolerância de 1\% na avaliação da resposta do aluno.<br><br>
+
+			Exibir os elementos $C$, $\bar{AC}$, $\bar{BC}$ e $\theta$, no \foreign{applet}.
+			\end{ct}<br>
+
+			Observe o triângulo $ABC$ na figura. A relação $\Delta f/\Delta x$ é simplesmente a tangente do ângulo $\theta$, ou ainda o coeficiente angular da reta azul, ou ainda a inclinação dessa reta.</p>
+			<p>%-------------------------------------
+			\section{Taxa de variação instantânea}<br><br>
+
+			Ainda mais importante é a \emph{taxa de variação instantânea} ou \emph{derivada}, que é simplesmente a taxa de variação média de $f$ quando escolhemos $\Delta x$ muito pequeno. Podemos representar esta ideia usando limites, assim:<br>
+			\begin{equation*}
+			\text{Taxa de variação instantânea} \doteq \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \frac{df}{dx}.
+			\end{equation*}
+			<br><br>
+			Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $f$, que você ainda não tem. Mas é possível estimá-la a partir da figura acima: arraste o ponto $B$ para \textbf{muito} perto de $A$ (use a ferramenta \foreign{zoom}). Este processo simboliza fazer $\Delta x \to 0$. </p>
+		</div>
+		<div id="i2" class="texto">
+			<p>Você pode estimar visualmente a qualidade da sua estimativa comparando a reta azul com a reta cinza. Esta é a \emph{tangente} a $f$ em $x_A$, ou a \emph{inclinação} de $f$ em $x_A$, ou a \emph{taxa de variação instantânea} de $f$ em $x_A$, ou a \emph{derivada} de $f$ em $x_A$.<br>
+
+			Agora faça novamente o cálculo da taxa de variação para $A$ e $B$ muito próximos (você pode errar a resposta em até 10\%):<br><br>
+
+			\answerfield
+
+			\begin{ct}
+			salvar $x_A$, pois será necessário restaurá-lo em seguida.<br>
+
+			A avaliação deve ser feita usando a função derivada de $f$, parte da configuração de exercício. A resposta esperada é $f'(x_A)$, com tolerância de 10\%.
+			\end{ct}
+
+			\condicional{Usuário errou}{A resposta correta é \parametro{resposta}.} Perceba que, há pouco, insistentemente escrevi ''em $x_A$''. Isto é importante por que essa quantidade, a taxa de variação instantânea (ou derivada, ou inclinação...) depende do valor de $x$ que escolhemos para calculá-la. Experimente arrastar $A$ (isto é, variar $x_A$) e veja como a reta tangente muda.</p>
+		</div>
+		<div id="t7" class="texto">
+			<p>\begin{ct}
+			Restaurar $x_A$ salvo há pouco.
+			\end{ct}
+			<br>
+			Agora que você estimou a taxa de variação instantânea, posso dizer que função é esta que você está vendo na figura: $f(x) = \parametro{função aleatória}$. </p>
+		</div>
+		<div id="i3" class="texto">
+			<p>Determine --- analiticamente --- a derivada de $f$ para $x$ qualquer e, em seguida, calcule o valor da derivada em $x = x_A$. Escreva o resultado abaixo. Atenção: a tolerância para erros no valor é agora muito menor ($< 1\%$) que na questão anterior, onde você estava apenas estimando a derivada. Por isso, calcule a derivada analiticamente, isto é, à mão (\textbf{não} faça como você fez no exercício anterior).<br><br>
+
+			\answerfield</p>
+		</div>
+		<div id="t9" class="texto">
+			<p>%------------------------------
+			\section{A reta tangente a $f$}<br><br>
+
+			Se você compreendeu as ideias anteriores, então você já sabe o que é uma derivada. Mas nós ainda não terminamos. Frequentemente é útil saber determinar a expressão da reta tangente a $f$ em $x_A$ (a expressão da reta cinza). Isto pode ser feito através da expressão geral da reta:<br>
+			\begin{equation*}
+			y(x) - y(x_A) = m (x - x_A),
+			\end{equation*}
+			onde $m$ é o coeficiente angular da reta. Como estamos interessados na reta tangente a $f$ em $x_A$, $m$ é simplesmente a derivada de $f$ ali, ou o coeficiente angular de $f$ em $x_A$, ou...<br><br>
+		   
+			Preencha abaixo os campos com as informações necessárias para representar a reta cinza:<br>
+			\begin{equation*}
+				y(x) = \shortanswerfield + \shortanswerfield \left(x - \shortanswerfield\,\right)
+			\end{equation*}
+
+			\paragraph{obs.:} a expressão acima pode ser escrita numa forma equivalente que talvez lhe seja mais familiar: $y - y_0 = m(x - x_0)$. Compare-as.</p>
+		</div>
+		<div id="t10" class="texto">
+			<p>\begin{ct}
+			as respostas esperadas são: $y_A$, $f'(x_A)$ e $x_A$, respectivamente. Elas têm pesos iguais e tolerância de 1\%.
+			\end{ct}<br>
+
+			\paragraph{Desafio:} qual é a expressão da reta \emph{perpendicular} à curva $f$ em $x_A$? \emph{Dica:} se $m_1$ é o coeficiente angular da reta tangente e $m_2$, o da reta perpendicular, então $m_1 m_2 = -1$ (da geometria analítica), desde que nenhum dos dois seja zero.</p>
+		</div>
+	</div>
+</body>
+</html>
