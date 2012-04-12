@@ -32,10 +32,12 @@ function setFrame(targetFrame) {
 			}
 			
 			var contentElement = content[targetFrame].id;
-			callEnterFrame(contentElement);
-			
 			var htmlContent = $(content[targetFrame]).html();
 			$('#textArea').html(htmlContent);
+
+			
+			callEnterFrame(contentElement);
+			
 
 			frame = targetFrame;	
 			memento.frame = frame;

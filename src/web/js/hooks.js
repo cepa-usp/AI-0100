@@ -99,6 +99,25 @@ function onButtonBackward () {
 	if (memento.frame > 0) stepBackward();
 }
 
+function setForwardButtonEnabled(booleanValue){
+	$("#step-forward").button({disabled: !booleanValue});
+}
+
+function setInputEnabled(textfieldId, booleanValue){
+	if(!booleanValue){
+		$("#" + textfieldId).attr('disabled', 'disabled');	
+	} else {
+		$("#" + textfieldId).removeAttr('disabled');
+	}
+	
+	
+	
+}
+
+function setBackwardButtonEnabled(booleanValue){
+	$("#step-backward").button({disabled: !booleanValue});
+}
+
 // Checks if given selector (type input) is a valid number. If not, resets field.
 function validateAnswer (selector) {
   var value = $(selector).val().replace(",", ".");

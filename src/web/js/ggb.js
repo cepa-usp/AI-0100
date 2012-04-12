@@ -65,9 +65,10 @@ var funcao = [
   
   
  
-
+var funcaoSelecionada;
 function applyAndSortFunctions(){
   sorteado = rand(0,funcao.length-1);
+  funcaoSelecionada = funcao[sorteado];
   ggbApplet.evalCommand("f(x)="+funcao[sorteado].f_ggb);
   var aux_A = funcao[sorteado].possiveis_A[rand(0,funcao[sorteado].possiveis_A.length-1)];
   ggbApplet.setCoords("A", aux_A, 0);
