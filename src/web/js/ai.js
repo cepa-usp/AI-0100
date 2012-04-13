@@ -1,5 +1,5 @@
 var TOLERANCE = 0.1; // Tolerância nas respostas: 10%
-var LOCAL_STORAGE_KEY = "AI-0146";
+var LOCAL_STORAGE_KEY = "AI-0100";
 var MAX_INIT_TRIES = 60;
 var init_tries = 0;
 var scorm = pipwerks.SCORM; // Seção SCORM
@@ -80,6 +80,7 @@ function reset () {
 	
   movie.reset();
   setFrame(0);
+  
 }
 
 /*
@@ -101,7 +102,7 @@ function fetch () {
   if (session.standalone) {
   
       var stream = localStorage.getItem(LOCAL_STORAGE_KEY);
-      //if (stream != null) ans = JSON.parse(stream);
+      if (stream != null) ans = JSON.parse(stream);
   }
   // Se estiver conectado a um LMS, usa SCORM
   else {

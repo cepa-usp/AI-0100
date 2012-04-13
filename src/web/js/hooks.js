@@ -10,7 +10,8 @@ function configButtons () {
 
 	// reset
 	$("#reset").button({disabled: true}).click(function () {
-		$("#reset-dialog").dialog("open");
+		restart();
+		//$("#reset-dialog").dialog("open");
 	});
 	$("#reset-dialog").dialog({
 		buttons: {
@@ -103,15 +104,28 @@ function setForwardButtonEnabled(booleanValue){
 	$("#step-forward").button({disabled: !booleanValue});
 }
 
+function setResetButtonEnabled(booleanValue){
+	$("#reset").button({disabled: !booleanValue});
+}
+
 function setInputEnabled(textfieldId, booleanValue){
 	if(!booleanValue){
 		$("#" + textfieldId).attr('disabled', 'disabled');	
 	} else {
 		$("#" + textfieldId).removeAttr('disabled');
 	}
-	
-	
-	
+}
+function setInputEnabled2(textfieldId, booleanValue, booleanCorrectness){
+	if(!booleanValue){
+		$("#" + textfieldId).attr('disabled', 'disabled');	
+	} else {
+		$("#" + textfieldId).removeAttr('disabled');
+	}
+	if(booleanCorrectness){
+		$("#" + textfieldId).css('background-color', '#DBFCD4');
+	} else {
+		$("#" + textfieldId).css('background-color', '#FCD4D8');
+	}
 }
 
 function setBackwardButtonEnabled(booleanValue){
