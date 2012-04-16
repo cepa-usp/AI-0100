@@ -41,7 +41,7 @@
 	<param name="errorDialogsActive" value="true" />
 	<param name="enableLabelDrags" value="false" />
 	<param name="showMenuBar" value="false" />
-	<param name="showToolBar" value="false" />
+	<param name="showToolBar" value="true" />
 	<param name="showToolBarHelp" value="false" />
 	<param name="showAlgebraInput" value="false" />
 	<param name="allowRescaling" value="true" />
@@ -63,11 +63,21 @@
 		<div id="step-backward" >Voltar</div>
 		<div id="step-forward" >Avançar</div>
 		<div id="reset" >Recomeçar</div>
+		<div id="painel" style="width:340px;height:30px;border:1px solid red;display:none">
+			<div id="barra" style="float:left;">barra</div>
+			<div id="nota_atual" style="float:right;width:70px;">nota</div>
+			<div id="nota_total" style="float:right;width:70px;">nota</div>
+		</div>
+		
       
 		<div id="reset-dialog" class="dialog" title="Confirmação">
 			Você tem certeza de que quer recomeçar esta atividade?
 		</div>
 		
+		<div id="start-dialog" class="dialog" title="Iniciar atividade">
+			De que modo você deseja efetuar esta atividade?
+		</div>
+				
 		<div id="finish-dialog" class="dialog" title="Fim da atividade">
 			Você concluiu esta atividade <span class="foreign">online</span> e acertou <span id="score">0</span> de 8 perguntas.
 			Utilize o fórum para propor experimentos, trocar ideias, dúvidas e dificuldades com seus colegas e tutores.

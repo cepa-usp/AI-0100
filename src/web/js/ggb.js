@@ -69,12 +69,29 @@ var funcaoSelecionada;
 function applyAndSortFunctions(){
   sorteado = rand(0,funcao.length-1);
   funcaoSelecionada = funcao[sorteado];
+  ggbApplet.setFixed("f", false);
   ggbApplet.evalCommand("f(x)="+funcao[sorteado].f_ggb);
+  ggbApplet.setFixed("f", true);
   var aux_A = funcao[sorteado].possiveis_A[rand(0,funcao[sorteado].possiveis_A.length-1)];
   ggbApplet.setCoords("A", aux_A, 0);
   var aux_B = funcao[sorteado].possiveis_B[rand(0,funcao[sorteado].possiveis_B.length-1)];
   while(aux_A == aux_B) aux_B = funcao[sorteado].possiveis_B[rand(0,funcao[sorteado].possiveis_B.length-1)];
   ggbApplet.setCoords("B", aux_B, 0);
+  
+   
+  var x1 = ggbApplet.getXcoord("A");
+  var x2 = ggbApplet.getXcoord("B");
+  var y1 = ggbApplet.getYcoord("A");
+  var y2 = ggbApplet.getYcoord("B");
+  var maxX = 2 * Math.max(Math.abs(x1), Math.abs(x2));
+  //var maxY = 2 * Math.max(Math.abs(y1), Math.abs(y2));
+  var min_y = Math.min(y1, y2);
+  var max_y = 2 * maxX * 6/5;
+  var delta_y2 = (max_y - min_y) / 2;
+  //ggbApplet.setCoordSystem(-maxX, maxX, -maxY, maxY);
+  ggbApplet.setCoordSystem(-maxX, maxX, -delta_y2, delta_y2);
+  
+  
 }
 
 function firstTimeConfig() {

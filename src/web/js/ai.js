@@ -28,9 +28,45 @@ $(window).unload(uninit); // Encerra a AI.
  * Inicia a Atividade Interativa (AI)
  */
 function init () {
+	createInitScreen();
 	loadContent();
+	hideGGB();
+	$("#start-dialog").dialog("open");
+	
+}
 
-  
+function showGGB(){
+	$("#ai-container").show();
+}
+
+function hideGGB(){
+	$("#ai-container").hide();
+}
+
+function createInitScreen(){
+	$("#start-dialog").dialog({
+		buttons: {
+			"Praticar": function () {
+				valendoNota = false;
+				$("#start-dialog").dialog("close");
+			},
+			"Valendo nota": function () {
+				valendoNota = true;
+				$("#start-dialog").dialog("close");				
+			}
+		},
+		autoOpen: false,
+		modal: true,
+		draggable: false,
+		beforeClose: function(){
+			showGGB();
+			setFrame(0);
+		},
+		position: "center",
+		stack: true,
+		zIndex: 4000,
+		width: 400
+	});	
 }
 
 function loadContent(){
