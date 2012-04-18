@@ -10,6 +10,8 @@ var t1;
 var debug = true;
 var content = {};
 var frame = -1;
+var valendoNota = false;
+var attempts = 0;
 var N_FRAMES = 0;
 var learnername = ""; // Nome do aluno
 var completed = false; // Status da AI: completada ou não
@@ -30,8 +32,7 @@ $(window).unload(uninit); // Encerra a AI.
 function init () {
 	createInitScreen();
 	loadContent();
-	hideGGB();
-	$("#start-dialog").dialog("open");
+
 	
 }
 
@@ -60,7 +61,14 @@ function createInitScreen(){
 		draggable: false,
 		beforeClose: function(){
 			showGGB();
-			setFrame(0);
+			loadState();
+			if(lastFinished==1 || memento.funcaoSelecionada==undefined){
+				restart();
+				setFrame(0);
+			} else {
+				setFrame(0);	
+			}
+			
 		},
 		position: "center",
 		stack: true,
@@ -81,6 +89,9 @@ function onContentLoaded(){
 	memento = fetch();
 	fetchDataFromScorm(memento);	
 	ggbApplet = document.ggbApplet;	
+	
+	hideGGB();
+	$("#start-dialog").dialog("open");	
 }
 
 function callEnterFrame(contentElement){

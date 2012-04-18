@@ -10,14 +10,15 @@ function configButtons () {
 
 	// reset
 	$("#reset").button({disabled: true}).click(function () {
-		restart();
-		//$("#reset-dialog").dialog("open");
+		hideGGB();
+		$("#start-dialog").dialog("open");	
+
 	});
 	$("#reset-dialog").dialog({
 		buttons: {
 			"Ok": function () {
 				$(this).dialog("close");
-				reset();
+				restart();
 			},
 			"Cancelar": function () {
 				$(this).dialog("close");
@@ -134,7 +135,7 @@ function setBackwardButtonEnabled(booleanValue){
 
 // Checks if given selector (type input) is a valid number. If not, resets field.
 function validateAnswer (selector) {
-  var value = $(selector).val().replace(",", ".");
+  var value = $('#' + selector).val().replace(",", ".");
   var isValid = !isNaN(value) && value != "";
   if (!isValid) $(selector).val("");
   return isValid;
@@ -142,10 +143,16 @@ function validateAnswer (selector) {
 
 // Check given answer against expected one, with relative tolerance also given
 function checkAnswer (correct_answer, user_answer, tolerance) {
-  return Math.abs(correct_answer - user_answer) < correct_answer * tolerance;
+	var dist = Math.abs(correct_answer - user_answer.toFixed(2));
+	var tol = Math.abs(correct_answer.toFixed(2)) * tolerance;
+	return dist < tol;
 }
 
 // Format a given number with 2 decimal places, and substitute period by comma.
 function formatNumber (string) {
 	return new Number(string).toFixed(2).replace(".", ",");
+}
+
+function toNumber(string){
+	return parseFloat(string.replace(",", "."))
 }
