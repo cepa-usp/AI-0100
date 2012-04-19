@@ -30,18 +30,32 @@ $(window).unload(uninit); // Encerra a AI.
  * Inicia a Atividade Interativa (AI)
  */
 function init () {
+	connectScorm();
 	createInitScreen();
 	loadContent();
+}
 
+function connectScorm(){
+	scorm.init();
+	session.connected = false;
+	try {
+		session.connected = scorm.API.handle.Initialized;
+		scorm.connection.isActive = session.connected;
+	} catch(e){
+		
+	}
+		
+	
+	session.standalone = !session.connected;
 	
 }
 
 function showGGB(){
-	$("#ai-container").show();
+	$("#ai-container").css("visibility", "visible");
 }
 
 function hideGGB(){
-	$("#ai-container").hide();
+	$("#ai-container").css("visibility", "hidden");
 }
 
 function createInitScreen(){
@@ -50,17 +64,18 @@ function createInitScreen(){
 			"Praticar": function () {
 				valendoNota = false;
 				$("#start-dialog").dialog("close");
+				showGGB();
 			},
 			"Valendo nota": function () {
 				valendoNota = true;
-				$("#start-dialog").dialog("close");				
+				$("#start-dialog").dialog("close");
+				showGGB();
 			}
 		},
 		autoOpen: false,
 		modal: true,
 		draggable: false,
 		beforeClose: function(){
-			showGGB();
 			loadState();
 			if(lastFinished==1 || memento.funcaoSelecionada==undefined){
 				restart();
@@ -93,6 +108,9 @@ function onContentLoaded(){
 	hideGGB();
 	$("#start-dialog").dialog("open");	
 }
+
+
+
 
 function callEnterFrame(contentElement){
 	var funcname = contentElement + "_enterFrame()";
@@ -142,8 +160,9 @@ function fetch () {
   ans.frame = 0;
   
   // Conecta-se ao LMS
-  session.connected = scorm.init();
-  session.standalone = !session.connected;
+  
+  
+
   
   // Se estiver rodando como stand-alone, usa local storage (HTML 5)
   if (session.standalone) {
@@ -207,6 +226,9 @@ function commit (data) {
     
       // Salva no LMS a nota do aluno.
       success = scorm.set("cmi.score.raw", data.score);
+      scorm.set("cmi.score_min", 0);
+      scorm.set("cmi.score_max", 100);
+      
       
       // Salva no LMS o status da atividade: completada ou não.
       success = scorm.set("cmi.completion_status", (data.completed ? "completed" : "incomplete"));

@@ -9,17 +9,18 @@
 	<div id="conteudo">
 	<!-- ***********   ORIENTAÇÕES ***********   -->
 		<div id="t1" class="texto">
-			<p><b>Orientações</b></p>
-			<p>Nesta atividade interativa nós exploraremos os conceitos de taxa de variação média e instantânea (derivadas) de uma função de uma variável $$(f: \mathbb{R} \to \mathbb{R})$$. A atividade consiste numa sequência de explicações, questões e instruções, que devem ser executadas na figura interativa ao lado.</p>
+			<h3>Orientações</h3>
+			<p><span id="username">Prezado aluno</span>, nesta atividade interativa nós exploraremos os conceitos de taxa de variação média e instantânea (derivadas) de uma função de uma variável $$(f: \mathbb{R} \to \mathbb{R})$$. A atividade consiste numa sequência de explicações, questões e instruções, que devem ser executadas na figura interativa ao lado (ela pode demorar um pouco para aparecer, dependendo da sua conexão com a Internet).</p>
 
-			<p>Você pode seguir esses passos quantas vezes quiser sem valer nota, bem como recomeçá-los a qualquer momento. Quando você achar que já está pronto para ser avaliado, pressione o botão "valendo nota". A partir deste momento cada nova tentativa será avaliada, de zero a cem pontos, e deverá ser executada até o fim (o botão "recomeçar" não terá efeito). Sua nota será a média aritmética de todas as suas tentativas.</p>	
+			<p>Você pode seguir esses passos quantas vezes quiser sem valer nota. Quando achar que já está pronto(a) para ser avaliado(a), recomece a atividade no modo 'valendo nota'. Nesta tentativa, suas respostas serão avaliadas e seu aproveitamento, enviado para o quadro de notas. Sua nota final será a média aritmética de todas as tentativas 'valendo nota' que você fizer.</p>	
 		</div>
 		<div id="t2" class="texto">
-			<p><b>obs.:</b> para responder às questões, talvez você precise modificar a visualização da janela acima. Par isso, utilize os botões no canto superior esquerdo dela: o botão mais à esquerda (seta) lhe permite arrastar os pontos $$ A $$ e $$ B $$, enquanto o outro botão lhe permite mover o centro da janela e ampliar/reduzir o gráfico. Caso você não esteja vendo os pontos $$ A $$ e $$ B $$, utilize esses botões agora para ajustar a visualização.</p>				
+			<p><b>obs.:</b> para responder às questões, talvez você precise modificar a visualização da janela ao lado. Par isso, utilize os botões no canto superior esquerdo dela: o botão mais à esquerda (seta) lhe permite arrastar os pontos $$ A $$ e $$ B $$ (quando permitido), enquanto o outro botão lhe permite mover o centro da janela e ampliar/reduzir o gráfico. Caso você não esteja vendo os pontos $$ A $$ e $$ B $$, utilize esses botões agora para ajustar a visualização.</p>				
 		</div>
 		
 		<!-- ***********   2. TAXA DE VARIACAO MÉDIA ***********   -->
 		<div id="t3" class="texto">
+		<h3>Taxa de variação média</h3>
 			<p>A <i>taxa de variação média</i> de uma função $$ f $$ é uma medida de quão rapidamente $$ f(x) $$ varia quando variamos $$ x $$. Dito de outra, se calcularmos $$ f $$ em $$ x_A $$ e depois em $$ x_B $$ (veja a figura), qual será a variação em $$ f $$ associada a esta variação em $$ x $$? Uma forma bastante comum de expressar isso é simplesmente dividir uma variação pela outra:</p><br>
 			<p>Taxa de variação média de $$ f $$ $$ \doteq \frac{f(x_B) - f(x_A)}{x_B - x_A} = \frac{\Delta f}{\Delta x}, $$</p>
 			<p>onde o $$ \Delta $$ é usado para representar uma variação. Ou seja, $$ \Delta x $$ é uma variação em $$ x $$, enquanto $$ \Delta f $$ é uma variação em $$ f $$. $$\Delta x $$ é arbitrário (de $$ x_A $$ até $$ x_B $$, no caso), pois $$ x $$ é a variável independente, mas $$ \Delta f $$ depende da variação em $$ x $$ (na verdade, depende de $$ x_A $$ e $$ x_B $$).</p>
@@ -41,13 +42,14 @@
 		<!-- ***********   3. TAXA DE VARIACAO INSTANTANEA  ***********   -->
 		<div id="t5" class="texto">
 			<h3>Taxa de variação instantânea</h3>
-
+<p>
 			Ainda mais importante é a \emph{taxa de variação instantânea} ou \emph{derivada}, que é simplesmente a taxa de variação média de $f$ quando escolhemos $\Delta x$ muito pequeno. Podemos representar esta ideia usando limites, assim:<br />			
 			\begin{equation*}
 			\text{Taxa de variação instantânea} \doteq \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \frac{df}{dx}.
-			\end{equation*}
-			<br />
-			Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $f$, que você ainda não tem. Mas é possível estimá-la a partir da figura ao lado: arraste o ponto $B$ para \textbf{muito} perto de $A$ (use a ferramenta \foreign{zoom}). Este processo simboliza fazer $\Delta x \to 0$. 
+			\end{equation*}</p>
+			<p>
+			Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $f$, que você ainda não tem. Mas é possível estimá-la a partir da figura ao lado: arraste o ponto $B$ para \textbf{muito} perto de $A$ (use a ferramenta \foreign{zoom}). Este processo simboliza fazer $\Delta x \to 0$.
+			</p> 
 		
 		</div>		
 		<div id="i2" class="texto">
@@ -81,7 +83,7 @@
 		<div id="i4" class="texto">
 			<p><b>A reta tangente a $$ f $$</b></p>
 			<p>Se você compreendeu as ideias anteriores, então você já sabe o que é uma derivada. Mas nós ainda não terminamos. Frequentemente é útil saber determinar a expressão da reta tangente a $$ f $$ em $$ x_A $$ (a expressão da reta cinza). Isto pode ser feito através da expressão geral da reta:</p>
-			<p>$$y(x) - y(x_A) = m (x - x_A),$$</p>
+			<p>$$y(x) = y(x_A) + m (x - x_A),$$</p>
 			<p>onde $$ m $$ é o coeficiente angular da reta. Como estamos interessados na reta tangente a $f$ em $x_A$, $m$ é simplesmente a derivada de $f$ ali, ou o coeficiente angular de $f$ em $x_A$, ou...</p>
 			<p>Preencha abaixo os campos com as informações necessárias para representar a reta cinza:</p>
 			<div style="text-align:center">
@@ -89,7 +91,7 @@
 			<input type="text" id="i4_textfield2" style="width:60px" name="i4_textfield2" /> (x - <input type="text" id="i4_textfield3" style="width:60px" name="i4_textfield3" />)
 			 
 			<input type="button" id="i4_button" value="Responder" onClick="i4_answer()" />
-			<p><b>obs.:</b> a expressão acima pode ser escrita numa forma equivalente que talvez lhe seja mais familiar: $$ y - y_0 = m(x - x_0) $$. Compare-as.</p>
+			<p><b>obs.:</b> a expressão acima pode ser escrita numa forma equivalente que talvez lhe seja mais familiar: $$ y = y_0 + m(x - x_0) $$. Compare-as.</p>
 			<br />
 			</div>
 			<div id="i4_resposta" class="resposta" style="visibility:hidden">

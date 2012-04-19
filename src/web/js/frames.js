@@ -71,13 +71,22 @@ function saveState(){
 
 function t1_enterFrame(){
 	loadState();
+	if(memento.learner!="") {
+		$("#username").html(memento.learner);
+	}
 	setResetButtonEnabled(false);
 	setBackwardButtonEnabled(false);
 	setForwardButtonEnabled(true);
+	ggbApplet.setVisible("C", false);
+	ggbApplet.setVisible("segmentoAC", false);
+	ggbApplet.setVisible("segmentoBC", false);
+	ggbApplet.setVisible("theta", false);
 }
 
 function t2_enterFrame(){
 	setBackwardButtonEnabled(true);
+	//ggbApplet.setVisible("C", true);
+	//ggbApplet.setVisible("theta", true);	
 }
 
 function i1_enterFrame(){
@@ -114,6 +123,20 @@ function i1_answer(){
 	// ggbApplet.setVisible("B", true); ???
 	
 }
+
+function i1_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i2_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i3_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i4_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+
 function i2_enterFrame(){
 	setForwardButtonEnabled(false);
 	if(respostaUsuario2!=-9999){
@@ -137,12 +160,15 @@ function i2_answer(){
 	respostaUsuario2 = toNumber($("#i2_textfield1").val());
 	res = checkAnswer(resposta, respostaUsuario2, 0.1);
 	addNota(res);
-	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";  
+	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";
+	if(res){
+		htmlResposta2 = "Correto! "
+	}
 	htmlResposta2+= "Perceba que, há pouco, insistentemente escrevi 'em xA'. Isto é importante por que essa quantidade, a taxa de variação instantânea "; 
 	htmlResposta2+= "(ou derivada, ou ";
 	htmlResposta2+= "inclinação...) depende do valor de x que escolhemos para calculá-la. Experimente arrastar A (isto é, ";
 	htmlResposta2+= "variar xA) e veja como a reta tangente muda. ";
-
+	htmlResposta2 = "<p>" + htmlResposta2 + "</p>";
 	setInputEnabled2("i2_textfield1", false, res);
 	setInputEnabled("i2_button", false);
 
@@ -179,8 +205,15 @@ function i3_answer(){
 	res = checkAnswer(resposta, respostaUsuario3, 0.01);
 	setInputEnabled2("i3_textfield1", false, res);
 	setInputEnabled("i3_button", false);		
-	addNota(res);
-	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";  
+	addNota(res);	
+	ggbApplet.setFixed("A", false);
+	var htmlResposta2 = "";
+		if(res){
+			htmlResposta2 = "Correto!";
+		} else {
+			htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";	
+		}
+		  
 
 	$("#i3_resposta").html(htmlResposta2);	
 	$("#i3_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
@@ -188,8 +221,24 @@ function i3_answer(){
 	
 }
 
+function t4intermed_enterFrame(){
+	ggbApplet.setVisible("C", true);
+	ggbApplet.setVisible("theta", true);	
+
+}
+
+function t5_enterFrame(){
+	ggbApplet.setVisible("C", false);
+	ggbApplet.setVisible("segmentoAC", false);
+	ggbApplet.setVisible("segmentoBC", false);
+	ggbApplet.setVisible("theta", false);	
+
+}
+
 
 function i4_enterFrame(){
+	ggbApplet.setVisible("retaSecante", false);
+	ggbApplet.setVisible("retaPerpendicular", false);
 	setForwardButtonEnabled(false);
 	if(respostaUsuario4_1!=-9999){
 		$("#i4_textfield1").val(respostaUsuario4_1);
@@ -263,6 +312,7 @@ function salvarNota(){
 	var notaAtual = (pontuacaoAtual/pontuacaoMaxima) * 100;
 	var novaMedia = ((mediaAnterior * attempts) + notaAtual) / attempts+1;
 	score = novaMedia;
+	memento.completed = true;
 	lastFinished = 1;
 	saveState();
 }

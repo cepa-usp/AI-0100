@@ -4,11 +4,14 @@ var respostaUsuario3 = -9999;
 respostaUsuario4_1 = -9999;
 respostaUsuario4_2 = -9999;
 respostaUsuario4_3 = -9999;
+var lastFinished = 0;
+var pontuacaoAtual = 0;
+var pontuacaoMaxima = 6;
 var xaIni = -9999;
 
 function loadState(){
-	fetch();
-	if(isNaN(memento.respostaUsuario1)) return;
+	memento = fetch();
+	if(memento.funcaoSelecionada==undefined) return;
 	if(memento ==null) return;
 	if(memento.respostaUsuario1 == null) return;
 	
@@ -17,10 +20,24 @@ function loadState(){
 	respostaUsuario3 = parseFloat(memento.respostaUsuario3);  
 	respostaUsuario4_1 = parseFloat(memento.respostaUsuario4_1);  
 	respostaUsuario4_2 = parseFloat(memento.respostaUsuario4_2);  
-	respostaUsuario4_3 = parseFloat(memento.respostaUsuario4_3);  
+	respostaUsuario4_3 = parseFloat(memento.respostaUsuario4_3);
+	score = parseFloat(memento.score);
+	attempts = parseInt(memento.attempts);
+	var funcaoSelecionada1 = memento.funcaoSelecionada;
+	for(var i=0; i<funcao.length;i++){
+		var str1 = funcao[i].f_ggb;
+		var str2 = funcaoSelecionada1.f_ggb;
+		if(str1 == str2){
+			sorteado = i;
+			funcaoSelecionada = funcao[i];
+			applyGGb();
+		}
+	}
+	lastFinished = parseInt(memento.lastFinished);
 	xaIni = parseFloat(memento.xaIni);
 }
 function restart(){
+	if(valendoNota) attempts++;
 	respostaUsuario1 = -9999;
 	respostaUsuario2 = -9999;
 	respostaUsuario3 = -9999;
@@ -28,8 +45,13 @@ function restart(){
 	respostaUsuario4_2 = -9999;
 	respostaUsuario4_3 = -9999;
 	xaIni = -9999;
+	//score = 0;
+	notaAtual = 0;
+	lastFinished = 0;
+	applyAndSortFunctions();
 	saveState();
-	setFrame(0);
+	fetch();
+	
 }
 
 function saveState(){	
@@ -39,32 +61,44 @@ function saveState(){
 	memento.respostaUsuario4_1 = parseFloat(respostaUsuario4_1);
 	memento.respostaUsuario4_2 = parseFloat(respostaUsuario4_2);
 	memento.respostaUsuario4_3 = parseFloat(respostaUsuario4_3);
+	memento.funcaoSelecionada = funcaoSelecionada;
 	memento.xaIni = parseFloat(xaIni);	
+	memento.score = parseFloat(score);
+	memento.attempts = parseInt(attempts);
+	memento.lastFinished = parseInt(lastFinished);
 	commit(memento);
 }
 
 function t1_enterFrame(){
 	loadState();
-	applyAndSortFunctions();
+	if(memento.learner!="") {
+		$("#username").html(memento.learner);
+	}
 	setResetButtonEnabled(false);
 	setBackwardButtonEnabled(false);
 	setForwardButtonEnabled(true);
+	ggbApplet.setVisible("C", false);
+	ggbApplet.setVisible("segmentoAC", false);
+	ggbApplet.setVisible("segmentoBC", false);
+	ggbApplet.setVisible("theta", false);
 }
 
 function t2_enterFrame(){
 	setBackwardButtonEnabled(true);
+	//ggbApplet.setVisible("C", true);
+	//ggbApplet.setVisible("theta", true);	
 }
 
 function i1_enterFrame(){
 	setForwardButtonEnabled(false);
 	xaIni = ggbApplet.getXcoord("A");
 	if(respostaUsuario1!=-9999){
-		i1_textfield1.value = respostaUsuario1;	
+		$("#i1_textfield1").val(respostaUsuario1);	
 		i1_answer();
 	}
 }
 function i1_answer(){
-	if(!validateAnswer(i1_textfield1)){
+	if(!validateAnswer("i1_textfield1")){
 		alert("Valor inválido!");
 		return;
 	}
@@ -74,11 +108,11 @@ function i1_answer(){
 	var ya = ggbApplet.getYcoord("A");	
 	var yb = ggbApplet.getYcoord("B");
 	var resposta = (yb - ya)/(xb - xa);
-	respostaUsuario1 = i1_textfield1.value;
+	respostaUsuario1 = toNumber($("#i1_textfield1").val());
 	res = checkAnswer(resposta, respostaUsuario1, 0.01);
 	setInputEnabled2("i1_textfield1", false, res);
 	setInputEnabled("i1_button", false);
-
+	addNota(res);
 	var htmlResposta = "A resposta correta é <b>" + formatNumber(resposta) + "</b>!"; 
 	$("#i1_resposta").html(htmlResposta);	
 	$("#i1_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
@@ -89,10 +123,24 @@ function i1_answer(){
 	// ggbApplet.setVisible("B", true); ???
 	
 }
+
+function i1_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i2_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i3_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+function i4_leaveFrame(){
+	setForwardButtonEnabled(true);
+}
+
 function i2_enterFrame(){
 	setForwardButtonEnabled(false);
 	if(respostaUsuario2!=-9999){
-		i2_textfield1.value = respostaUsuario2;	
+		$("#i2_textfield1").val(respostaUsuario2);	
 		i2_answer();
 	}	
 }
@@ -103,21 +151,24 @@ function t7_enterFrame(){
 }
 
 function i2_answer(){
-	if(!validateAnswer(i2_textfield1)){
+	if(!validateAnswer("i2_textfield1")){
 		alert("Valor inválido!");
 		return;
 	}
 	var xa = ggbApplet.getXcoord("A");
 	resposta = funcaoSelecionada.df(xa);
-	respostaUsuario2 = i2_textfield1.value;
+	respostaUsuario2 = toNumber($("#i2_textfield1").val());
 	res = checkAnswer(resposta, respostaUsuario2, 0.1);
-	
-	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";  
+	addNota(res);
+	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";
+	if(res){
+		htmlResposta2 = "Correto! "
+	}
 	htmlResposta2+= "Perceba que, há pouco, insistentemente escrevi 'em xA'. Isto é importante por que essa quantidade, a taxa de variação instantânea "; 
 	htmlResposta2+= "(ou derivada, ou ";
 	htmlResposta2+= "inclinação...) depende do valor de x que escolhemos para calculá-la. Experimente arrastar A (isto é, ";
 	htmlResposta2+= "variar xA) e veja como a reta tangente muda. ";
-
+	htmlResposta2 = "<p>" + htmlResposta2 + "</p>";
 	setInputEnabled2("i2_textfield1", false, res);
 	setInputEnabled("i2_button", false);
 
@@ -137,25 +188,32 @@ function i2_answer(){
 function i3_enterFrame(){
 	setForwardButtonEnabled(false);
 	if(respostaUsuario3!=-9999){
-		i3_textfield1.value = respostaUsuario3;
+		$("#i3_textfield1").val(respostaUsuario3);
 		i3_answer();
 	}	
 }
 
 
 function i3_answer(){
-	if(!validateAnswer(i3_textfield1)){
+	if(!validateAnswer("i3_textfield1")){
 		alert("Valor inválido!");
 		return;
 	}
 	var xa = xaIni;
 	resposta = funcaoSelecionada.df(xa);
-	respostaUsuario3 = i3_textfield1.value;
-	res = checkAnswer(resposta, respostaUsuario2, 0.01);
+	respostaUsuario3 = toNumber($("#i3_textfield1").val());
+	res = checkAnswer(resposta, respostaUsuario3, 0.01);
 	setInputEnabled2("i3_textfield1", false, res);
 	setInputEnabled("i3_button", false);		
-	
-	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";  
+	addNota(res);	
+	ggbApplet.setFixed("A", false);
+	var htmlResposta2 = "";
+		if(res){
+			htmlResposta2 = "Correto!";
+		} else {
+			htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";	
+		}
+		  
 
 	$("#i3_resposta").html(htmlResposta2);	
 	$("#i3_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
@@ -163,20 +221,36 @@ function i3_answer(){
 	
 }
 
+function t4intermed_enterFrame(){
+	ggbApplet.setVisible("C", true);
+	ggbApplet.setVisible("theta", true);	
+
+}
+
+function t5_enterFrame(){
+	ggbApplet.setVisible("C", false);
+	ggbApplet.setVisible("segmentoAC", false);
+	ggbApplet.setVisible("segmentoBC", false);
+	ggbApplet.setVisible("theta", false);	
+
+}
+
 
 function i4_enterFrame(){
+	ggbApplet.setVisible("retaSecante", false);
+	ggbApplet.setVisible("retaPerpendicular", false);
 	setForwardButtonEnabled(false);
 	if(respostaUsuario4_1!=-9999){
-		i4_textfield1.value = respostaUsuario4_1;
-		i4_textfield2.value = respostaUsuario4_2;
-		i4_textfield3.value = respostaUsuario4_3;
+		$("#i4_textfield1").val(respostaUsuario4_1);
+		$("#i4_textfield2").val(respostaUsuario4_2);
+		$("#i4_textfield3").val(respostaUsuario4_3);
 		i4_answer();
 	}	
 }
 
 
 function i4_answer(){
-	if(!(validateAnswer(i4_textfield1) && validateAnswer(i4_textfield1) && validateAnswer(i4_textfield1) )){
+	if(!(validateAnswer("i4_textfield1") && validateAnswer("i4_textfield1") && validateAnswer("i4_textfield1") )){
 		alert("Valor inválido!");
 		return;
 	}
@@ -185,15 +259,23 @@ function i4_answer(){
 	var resposta2 = funcaoSelecionada.df(ggbApplet.getXcoord("A"));
 	var resposta3 = ggbApplet.getXcoord("A");;
 	
-	respostaUsuario4_1 = i4_textfield1.value;
-	respostaUsuario4_2 = i4_textfield2.value;
-	respostaUsuario4_3 = i4_textfield3.value;
+	var sht1 = toNumber($("#i4_textfield1").val());
+	var sht2 = toNumber($("#i4_textfield2").val());
+	var sht3 = toNumber($("#i4_textfield3").val());
+	
+	respostaUsuario4_1 = sht1;
+	respostaUsuario4_2 = sht2;
+	respostaUsuario4_3 = sht3;
 	
 	res1 = checkAnswer(resposta1, respostaUsuario4_1, 0.01);
 	res2 = checkAnswer(resposta2, respostaUsuario4_2, 0.01);
 	res3 = checkAnswer(resposta3, respostaUsuario4_3, 0.01);
 	
-	setInputEnabled2("i4_textfield1", false, res1);
+	addNota(res1);
+	addNota(res2);
+	addNota(res3);
+	
+	setInputEnabled2("i4_textfield1", false, res1);	
 	setInputEnabled2("i4_textfield2", false, res2);
 	setInputEnabled2("i4_textfield3", false, res3);
 	setInputEnabled("i4_button", false);		
@@ -203,10 +285,34 @@ function i4_answer(){
 	$("#i4_resposta").html(htmlResposta4);	
 	$("#i4_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
 	
-	setForwardButtonEnabled(true)
+	
+	salvarNota();
+	lastFinished=1;
+	saveState();
+
+	
+	
+	setForwardButtonEnabled(true);
+}
+
+function addNota(res){
+	if(res) pontuacaoAtual++;
 }
 
 function t10_enterFrame(){
 	setForwardButtonEnabled(false)
 	setResetButtonEnabled(true);
+}
+
+
+function salvarNota(){
+	if(lastFinished==1) return;
+	if(!valendoNota) return;
+	var mediaAnterior = score;
+	var notaAtual = (pontuacaoAtual/pontuacaoMaxima) * 100;
+	var novaMedia = ((mediaAnterior * attempts) + notaAtual) / attempts+1;
+	score = novaMedia;
+	memento.completed = true;
+	lastFinished = 1;
+	saveState();
 }
