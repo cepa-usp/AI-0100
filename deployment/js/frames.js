@@ -1,4 +1,4 @@
-var respostaUsuario1 = -9999;
+ï»¿var respostaUsuario1 = -9999;
 var respostaUsuario2 = -9999;
 var respostaUsuario3 = -9999;
 respostaUsuario4_1 = -9999;
@@ -99,7 +99,7 @@ function i1_enterFrame(){
 }
 function i1_answer(){
 	if(!validateAnswer("i1_textfield1")){
-		alert("Valor inválido!");
+		alert("Valor invÃ¡lido!");
 		return;
 	}
 	
@@ -113,13 +113,13 @@ function i1_answer(){
 	setInputEnabled2("i1_textfield1", false, res);
 	setInputEnabled("i1_button", false);
 	addNota(res);
-	var htmlResposta = "A resposta correta é <b>" + formatNumber(resposta) + "</b>!"; 
+	var htmlResposta = "A resposta correta Ã© <b>" + formatNumber(resposta) + "</b>!"; 
 	$("#i1_resposta").html(htmlResposta);	
 	$("#i1_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
 	saveState();
 	setForwardButtonEnabled(true);
 	
-	// Exibir os elementos C, A¯C, B¯C e , no applet.
+	// Exibir os elementos C, AÂ¯C, BÂ¯C e , no applet.
 	// ggbApplet.setVisible("B", true); ???
 	
 }
@@ -152,7 +152,7 @@ function t7_enterFrame(){
 
 function i2_answer(){
 	if(!validateAnswer("i2_textfield1")){
-		alert("Valor inválido!");
+		alert("Valor invÃ¡lido!");
 		return;
 	}
 	var xa = ggbApplet.getXcoord("A");
@@ -160,13 +160,13 @@ function i2_answer(){
 	respostaUsuario2 = toNumber($("#i2_textfield1").val());
 	res = checkAnswer(resposta, respostaUsuario2, 0.1);
 	addNota(res);
-	var htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";
+	var htmlResposta2 = "A resposta correta Ã© <b>" +  formatNumber(resposta) + " </b> ";
 	if(res){
 		htmlResposta2 = "Correto! "
 	}
-	htmlResposta2+= "Perceba que, há pouco, insistentemente escrevi 'em xA'. Isto é importante por que essa quantidade, a taxa de variação instantânea "; 
+	htmlResposta2+= "Perceba que, hÃ¡ pouco, insistentemente escrevi 'em xA'. Isto Ã© importante por que essa quantidade, a taxa de variaÃ§Ã£o instantÃ¢nea "; 
 	htmlResposta2+= "(ou derivada, ou ";
-	htmlResposta2+= "inclinação...) depende do valor de x que escolhemos para calculá-la. Experimente arrastar A (isto é, ";
+	htmlResposta2+= "inclinaÃ§Ã£o...) depende do valor de x que escolhemos para calculÃ¡-la. Experimente arrastar A (isto Ã©, ";
 	htmlResposta2+= "variar xA) e veja como a reta tangente muda. ";
 	htmlResposta2 = "<p>" + htmlResposta2 + "</p>";
 	setInputEnabled2("i2_textfield1", false, res);
@@ -177,7 +177,7 @@ function i2_answer(){
 	$("#i2_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
 	setForwardButtonEnabled(true);
 	
-	// Exibir os elementos C, A¯C, B¯C e , no applet.
+	// Exibir os elementos C, AÂ¯C, BÂ¯C e , no applet.
 	ggbApplet.setVisible("C", true);
 	ggbApplet.setVisible("segmentoAC", true);
 	ggbApplet.setVisible("segmentoBC", true);
@@ -196,7 +196,7 @@ function i3_enterFrame(){
 
 function i3_answer(){
 	if(!validateAnswer("i3_textfield1")){
-		alert("Valor inválido!");
+		alert("Valor invÃ¡lido!");
 		return;
 	}
 	var xa = xaIni;
@@ -211,7 +211,7 @@ function i3_answer(){
 		if(res){
 			htmlResposta2 = "Correto!";
 		} else {
-			htmlResposta2 = "A resposta correta é <b>" +  formatNumber(resposta) + " </b> ";	
+			htmlResposta2 = "A resposta correta Ã© <b>" +  formatNumber(resposta) + " </b> ";	
 		}
 		  
 
@@ -251,7 +251,7 @@ function i4_enterFrame(){
 
 function i4_answer(){
 	if(!(validateAnswer("i4_textfield1") && validateAnswer("i4_textfield1") && validateAnswer("i4_textfield1") )){
-		alert("Valor inválido!");
+		alert("Valor invÃ¡lido!");
 		return;
 	}
 	var xa = xaIni;
@@ -280,7 +280,7 @@ function i4_answer(){
 	setInputEnabled2("i4_textfield3", false, res3);
 	setInputEnabled("i4_button", false);		
 	
-	var htmlResposta4 = "A resposta correta é <b>y(x) = " +  formatNumber(resposta1) + " + " + formatNumber(resposta2) + "(x - (" + formatNumber(resposta3) + ")) </b> ";  
+	var htmlResposta4 = "A resposta correta Ã© <b>y(x) = " +  formatNumber(resposta1) + " + " + formatNumber(resposta2) + "(x - (" + formatNumber(resposta3) + ")) </b> ";  
 
 	$("#i4_resposta").html(htmlResposta4);	
 	$("#i4_resposta").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
