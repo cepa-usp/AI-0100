@@ -5,7 +5,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Insert title here</title>
 </head>
-<body>
+<body leftmargin="20">
 	<div id="conteudo">
 	<!-- ***********   ORIENTAÇÕES ***********   -->
 		<div id="t1" class="texto">
@@ -42,35 +42,28 @@
 		<!-- ***********   3. TAXA DE VARIACAO INSTANTANEA  ***********   -->
 		<div id="t5" class="texto">
 			<h3>Taxa de variação instantânea</h3>
-<p>
-			Ainda mais importante é a \emph{taxa de variação instantânea} ou \emph{derivada}, que é simplesmente a taxa de variação média de $f$ quando escolhemos $\Delta x$ muito pequeno. Podemos representar esta ideia usando limites, assim:<br />			
-			\begin{equation*}
-			\text{Taxa de variação instantânea} \doteq \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \frac{df}{dx}.
-			\end{equation*}</p>
-			<p>
-			Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $f$, que você ainda não tem. Mas é possível estimá-la a partir da figura ao lado: arraste o ponto $B$ para \textbf{muito} perto de $A$ (use a ferramenta \foreign{zoom}). Este processo simboliza fazer $\Delta x \to 0$.
-			</p> 
-		
+			<p>Ainda mais importante é a <i>taxa de variação instantânea</i> ou <i>derivada</i>, que é simplesmente a taxa de variação média de $$ f $$ quando escolhemos $$ \Delta x $$ muito pequeno. Podemos representar esta ideia usando limites, assim:</p>
+			<p>Taxa de variação instantânea $$ \doteq \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \frac{df}{dx}. $$</p>
+			<p>Para calcular analiticamente a taxa de variação instantânea você precisa da expressão de $$ f $$, que você ainda não tem. Mas é possível estimá-la a partir da figura ao lado: arraste o ponto $$ B $$ para <b>muito</b> perto de $$ A $$ (use a ferramenta <i>zoom</i>). Este processo simboliza fazer $$ \Delta x \to 0 $$.</p>		
 		</div>		
 		<div id="i2" class="texto">
 			<p>Você pode estimar visualmente a qualidade da sua estimativa comparando a reta azul com a reta cinza. Esta é a <i>tangente</i> a $$ f $$ em $$ x_A $$, ou a <i>inclinação</i> de $$ f $$ em $$ x_A $$, ou a <i>taxa de variação instantânea</i> de $$ f $$ em $$ x_A $$, ou a <i>derivada</i> de $$ f $$ em $$ x_A $$.</p>
-			<p>Agora faça novamente o cálculo da taxa de variação para $A$ e $B$ muito próximos (você pode errar a resposta em até 10\%):</p>
-
+			<p>Agora faça novamente o cálculo da taxa de variação para $$ A $$ e $$ B $$ muito próximos (você pode errar a resposta em até 10%):</p>
 			<input type="text" id="i2_textfield1" name="i2_textfield1" /><input type="button" id="i2_button" value="Responder" onClick="i2_answer()" />
 			<div id="i2_resposta" class="resposta" style="visibility:hidden">
-
 				\condicional{Usuário errou}{A resposta correta é \parametro{resposta}.} 
-				Perceba que, há pouco, insistentemente escrevi ''em $x_A$''. 
+				Perceba que, há pouco, insistentemente escrevi ''em $$ x_A $$''. 
 				Isto é importante por que essa quantidade, a taxa de variação instantânea 
-				(ou derivada, ou inclinação...) depende do valor de $x$ que escolhemos para calculá-la.
-				 Experimente arrastar $A$ (isto é, variar $x_A$) e veja como a reta tangente muda.				
+				(ou derivada, ou inclinação...) depende do valor de $$ x $$ que escolhemos para calculá-la.
+				 Experimente arrastar $$ A $$ (isto é, variar $$ x_A $$) e veja como a reta tangente muda.				
 			</div>
-
-
-			
 		</div>
 		<div id="t7" class="texto">
-			<p>Agora que você estimou a taxa de variação instantânea, posso dizer que função é esta que você está vendo na figura: $$ f(x) = $$ <span id="t7func">0</span>.
+			<p>Agora que você estimou a taxa de variação instantânea, posso dizer que função é esta que você está vendo na figura: 
+			<div style="text-align:center;border:1px dashed #000000;width:70%;padding:5px;">
+				$$ f(x) = $$ <span id="t7func">0</span>
+			</div>
+			</p>.
 		</div>
 		<div id="i3" class="texto">
 			<p>Determine --- analiticamente --- a derivada de $$ f $$ para $$ x $$ qualquer e, em seguida, calcule o valor da derivada em $$ x = x_A $$. Escreva o resultado abaixo. Atenção: a tolerância para erros no valor é agora muito menor ($$ < $$ 1%) que na questão anterior, onde você estava apenas estimando a derivada. Por isso, calcule a derivada analiticamente, isto é, à mão (<b>não</b> faça como você fez no exercício anterior).</p>
@@ -84,7 +77,7 @@
 			<p><b>A reta tangente a $$ f $$</b></p>
 			<p>Se você compreendeu as ideias anteriores, então você já sabe o que é uma derivada. Mas nós ainda não terminamos. Frequentemente é útil saber determinar a expressão da reta tangente a $$ f $$ em $$ x_A $$ (a expressão da reta cinza). Isto pode ser feito através da expressão geral da reta:</p>
 			<p>$$y(x) = y(x_A) + m (x - x_A),$$</p>
-			<p>onde $$ m $$ é o coeficiente angular da reta. Como estamos interessados na reta tangente a $f$ em $x_A$, $m$ é simplesmente a derivada de $f$ ali, ou o coeficiente angular de $f$ em $x_A$, ou...</p>
+			<p>onde $$ m $$ é o coeficiente angular da reta. Como estamos interessados na reta tangente a $$ f $$ em $$ x_A $$, $$ m $$ é simplesmente a derivada de $$ f $$ ali, ou o coeficiente angular de $$ f $$ em $$ x_A $$, ou...</p>
 			<p>Preencha abaixo os campos com as informações necessárias para representar a reta cinza:</p>
 			<div style="text-align:center">
 			y(x) = <input type="text" id="i4_textfield1" name="i4_textfield1" style="width:60px" /> +
@@ -97,11 +90,10 @@
 			<div id="i4_resposta" class="resposta" style="visibility:hidden">
 				sdf
 			</div>
-
-			
 		</div>
 		<div id="t10" class="texto">
-			<p><b>Desafio:</b> qual é a expressão da reta <i>perpendicular</i> à curva $$ f $$ em $$ x_A $$? <i>Dica:</i> se $$ m_1 $$ é o coeficiente angular da reta tangente e $$ m_2 $$, o da reta perpendicular, então $$ m_1 m_2 = -1 $$ (da geometria analítica), desde que nenhum dos dois seja zero.</p>		</div>
+			<p><b>Desafio:</b> qual é a expressão da reta <i>perpendicular</i> à curva $$ f $$ em $$ x_A $$? <i>Dica:</i> se $$ m_1 $$ é o coeficiente angular da reta tangente e $$ m_2 $$, o da reta perpendicular, então $$ m_1 m_2 = -1 $$ (da geometria analítica), desde que nenhum dos dois seja zero.</p>
+		</div>
 	</div>
 </body>
 </html>
